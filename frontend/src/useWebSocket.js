@@ -1,8 +1,12 @@
 // useWebSocket.js — Real-time grid state hook
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-const WS_URL = 'ws://localhost:8000/ws/grid';
-const API_URL = 'http://localhost:8000';
+// Use environment variables if deployed, otherwise fallback to localhost for local dev
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:8000';
+
+const WS_URL = `${WS_BASE}/ws/grid`;
+const API_URL = API_BASE;
 
 export function useGridState() {
   const [state, setState] = useState(null);
