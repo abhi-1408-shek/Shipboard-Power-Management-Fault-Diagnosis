@@ -19,6 +19,10 @@ is used instead (no model files required).
 try:
     import torch
     import torch.nn as nn
+    
+    # Restrict PyTorch CPU threads to minimize RAM usage in constrained cloud environments (like Render 512MB)
+    torch.set_num_threads(1)
+    
     TORCH_AVAILABLE = True
 except ImportError:
     TORCH_AVAILABLE = False
